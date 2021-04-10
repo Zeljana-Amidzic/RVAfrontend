@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
@@ -12,13 +13,14 @@ import java.util.List;
  * The persistent class for the departman database table.
  * 
  */
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @NamedQuery(name="Departman.findAll", query="SELECT d FROM Departman d")
 public class Departman implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="DEPARTMAN_ID_GENERATOR", sequenceName="DEPARTMAN_SEQ")
+	@SequenceGenerator(name="DEPARTMAN_ID_GENERATOR", sequenceName="DEPARTMAN_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEPARTMAN_ID_GENERATOR")
 	private Integer id;
 

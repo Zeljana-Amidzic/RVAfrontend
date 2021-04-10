@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rva.repository.FakultetRepository;
 import rva.jpa.Fakultet;
 
+@CrossOrigin
 @RestController
 public class FakultetRestController {
 
@@ -35,9 +37,9 @@ public class FakultetRestController {
 	public Fakultet getFakultet(@PathVariable Integer id) {
 		return fakultetRepository.getOne(id);
 	}
-	
+	//ovo vraca 404 stalno
 	@GetMapping("fakultetNaziv/{naziv}")
-	public Collection<Fakultet> getFakultetByNaziv(@PathVariable String naziv){
+	public Collection<Fakultet> getByNameFakultet(@PathVariable String naziv){
 		return fakultetRepository.findByNazivContainingIgnoreCase(naziv);
 	}
 	

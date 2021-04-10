@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
@@ -12,13 +13,14 @@ import java.util.List;
  * The persistent class for the status database table.
  * 
  */
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @NamedQuery(name="Status.findAll", query="SELECT s FROM Status s")
 public class Status implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="STATUS_ID_GENERATOR", sequenceName="STATUS_SEQ")
+	@SequenceGenerator(name="STATUS_ID_GENERATOR", sequenceName="STATUS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="STATUS_ID_GENERATOR")
 	private Integer id;
 
