@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import rva.jpa.Status;
 import rva.repository.StatusRepository;
 
 @CrossOrigin
 @RestController
-//@Api(tags = {"Artikl CRUD operacije"})
+@Api(tags = {"Status CRUD operacije"})
 public class StatusRestController {
 
 	@Autowired
@@ -32,21 +34,25 @@ public class StatusRestController {
 	private JdbcTemplate jdbcTamplate;
 	
 	@GetMapping("status")
+	@ApiOperation(value="Vraæa kolekciju svih statusa iz baze podataka")
 	public Collection<Status> getStatuse(){
 		return statusRepository.findAll();
 	}
 	
 	@GetMapping("status/{id}")
+	@ApiOperation(value="Vraæa status na osnovu prosledjene vrednosti za id")
 	public Status getStatusByID(@PathVariable("id") Integer id) {
 		return statusRepository.getOne(id);
 	}
 	
 	@GetMapping("statusNaziv/{naziv}")
+	@ApiOperation(value="Vraæa status na osnovu prosledjenog naziva")
 	public Collection<Status> getStatusByName(@PathVariable("naziv") String naziv){
 		return statusRepository.findByNazivContainingIgnoreCase(naziv);
 	}
 	
 	@PostMapping("status")
+	@ApiOperation(value="Dodaje novi status u bazu podataka")
 	public ResponseEntity<Status> insertStatus(@RequestBody Status status){
 		if(!statusRepository.existsById(status.getId())) {
 			statusRepository.save(status);
@@ -56,6 +62,7 @@ public class StatusRestController {
 	}
 	
 	@PutMapping("status")
+	@ApiOperation(value="Modifikacija statusa koji postoji u bazi podataka")
 	public ResponseEntity<Status> updateStatus(@RequestBody Status status){
 		if(!statusRepository.existsById(status.getId())) {
 			return new ResponseEntity<Status>(HttpStatus.CONFLICT);
@@ -65,6 +72,7 @@ public class StatusRestController {
 	}
 	
 	@DeleteMapping("status/{id}")
+	@ApiOperation(value="Brisanje statusa po prodledjenoj vrednosti za id")
 	public ResponseEntity<Status> deleteStatus(@PathVariable Integer id){
 		if(!statusRepository.existsById(id)) {
 			return new ResponseEntity<Status>(HttpStatus.NO_CONTENT);
@@ -72,7 +80,7 @@ public class StatusRestController {
 			statusRepository.deleteById(id);
 		}
 		
-		if(id == 100)
+		if(id == -100)
 			jdbcTamplate.execute("INSERT INTO \"status\" (\"id\",\"naziv\",\"oznaka\")"+
 								"VALUES (-100,'Naziv test','TO')");
 		return new ResponseEntity<Status>(HttpStatus.OK);
