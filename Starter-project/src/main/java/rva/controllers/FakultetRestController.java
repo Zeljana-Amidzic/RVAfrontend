@@ -22,7 +22,7 @@ import rva.jpa.Fakultet;
 
 @CrossOrigin
 @RestController
-@Api(tags = {"Status CRUD operacije"})
+@Api(tags = {"Fakultet CRUD operacije"})
 public class FakultetRestController {
 
 	@Autowired
