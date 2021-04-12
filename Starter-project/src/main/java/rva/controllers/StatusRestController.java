@@ -26,7 +26,7 @@ import rva.repository.StatusRepository;
 @RestController
 @Api(tags = {"Status CRUD operacije"})
 public class StatusRestController {
-
+	//komentar zbog predaje
 	@Autowired
 	private StatusRepository statusRepository;
 	
