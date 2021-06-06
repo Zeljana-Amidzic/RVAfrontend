@@ -6,6 +6,7 @@ import { DepartmanComponent } from './components/departman/departman.component';
 import { HomeComponent } from './components/core/home/home.component';
 import { AboutComponent } from './components/core/about/about.component';
 import { AuthorComponent } from './components/core/author/author.component';
+import { StudentComponent } from './components/student/student.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'status', component: StatusComponent},
   {path: 'fakultet', component: FakultetComponent},
   {path: 'departman', component: DepartmanComponent},
+  {path: 'student', component: StudentComponent},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'author', component: AuthorComponent},

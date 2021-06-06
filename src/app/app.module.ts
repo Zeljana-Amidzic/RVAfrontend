@@ -19,8 +19,29 @@ import { StatusComponent } from './components/status/status.component';
 import { DepartmanComponent } from './components/departman/departman.component';
 import { StudentComponent } from './components/student/student.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import { DepartmanDialogComponent } from './dialogs/departman-dialog/departman-dialog.component';
+import { StatusDialogComponent } from './dialogs/status-dialog/status-dialog.component';
+import { FakultetDialogComponent } from './dialogs/fakultet-dialog/fakultet-dialog.component';
+import { StudentDialogComponent } from './dialogs/student-dialog/student-dialog.component';
+
+
 @NgModule({
   declarations: [
+    AppComponent,
     AppComponent,
     HomeComponent,
     AuthorComponent,
@@ -28,15 +49,11 @@ import { StudentComponent } from './components/student/student.component';
     FakultetComponent,
     StatusComponent,
     DepartmanComponent,
-    StudentComponent
-  ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatExpansionModule
+    StudentComponent,
+    DepartmanDialogComponent,
+    StatusDialogComponent,
+    FakultetDialogComponent,
+    StudentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +65,22 @@ import { StudentComponent } from './components/student/student.component';
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatSortModule,
+    MatPaginatorModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
