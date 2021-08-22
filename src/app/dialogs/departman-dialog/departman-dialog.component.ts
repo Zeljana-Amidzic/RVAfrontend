@@ -35,7 +35,8 @@ export class DepartmanDialogComponent implements OnInit {
   }
 
   public addDepartman(): void{
-    this.departmanService.addDepartman(this.data).subscribe(() => {
+    this.departmanService.addDepartman(this.data)
+    .subscribe(() => {
       this.snackBar.open('Uspešno dodat departman: ' + this.data.naziv, 'OK', {
         duration: 2500
       })
@@ -44,8 +45,8 @@ export class DepartmanDialogComponent implements OnInit {
       console.log(error.name + ' ' + error.message);
       this.snackBar.open('Doslo je do greske prilikom dodavanja novog departmana.' , 'Zatvori', {
         duration: 2500
-      })
-    }
+      });
+    };
   }
 
   public updateDepartman(): void {

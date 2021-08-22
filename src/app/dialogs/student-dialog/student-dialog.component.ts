@@ -55,7 +55,7 @@ export class StudentDialogComponent implements OnInit, OnDestroy {
       this.snackBar.open('Došlo je do greške prilikom dodavanja studenta: ' + this.data.id, 'Zatvori', {
         duration: 2500
       })
-    }
+    };
   }
   public update(): void {
     this.studentService.updateStudent(this.data)

@@ -35,13 +35,14 @@ export class DepartmanComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.subscription = this.departmanService.getAllDepartmane().subscribe(data => {
+    this.subscription = this.departmanService.getAllDepartmane()
+    .subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
 
       this.dataSource.filterPredicate = (data, filter: string) =>{
         const accumulator = (currentTerm, key) => {
           return key === 'fakultet' ? currentTerm + data.fakultet.naziv : currentTerm + data[key];
-        }
+        };
         const dataStr = Object.keys(data).reduce(accumulator,'').toLowerCase();
         const transformedFilter = filter.trim().toLowerCase();
         return dataStr.indexOf(transformedFilter) !== -1;
@@ -55,8 +56,8 @@ export class DepartmanComponent implements OnInit, OnDestroy {
         }
       };
 
-      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }),
     (error: Error) => {
       console.log(error.name + ' ' + error.message);
@@ -64,11 +65,10 @@ export class DepartmanComponent implements OnInit, OnDestroy {
   }
   public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string, fakultet?: Fakultet) {
     const dialogRef = this.dialog.open(DepartmanDialogComponent, 
-      {data: {
-        id,naziv,oznaka,fakultet
-      }});
-    dialogRef.componentInstance.flag = flag; 
-    dialogRef.afterClosed().subscribe(res => {
+      {data: {id, naziv, oznaka, fakultet}});
+      dialogRef.componentInstance.flag = flag; 
+      
+      dialogRef.afterClosed().subscribe(res => {
       if(res === 1)
       {
         this.loadData();

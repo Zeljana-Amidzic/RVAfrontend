@@ -42,36 +42,35 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
   } 
 
   loadData() {
-    this.subscription = this.studentService.getStudentPoDepartmanu(this.selektovaniDepartman.id).subscribe(
-      data =>       
-      {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.filterPredicate = (data, filter: string) =>{
-          const accumulator = (currentTerm, key) => {
-            return key === 'status' ? currentTerm + data.status.naziv : currentTerm + data[key];
-          }
-          const dataStr = Object.keys(data).reduce(accumulator,'').toLowerCase();
-          const transformedFilter = filter.trim().toLowerCase();
-          return dataStr.indexOf(transformedFilter) !== -1;
+    this.subscription = this.studentService.getStudentPoDepartmanu(this.selektovaniDepartman.id)
+    .subscribe(data => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data);
+
+      this.dataSource.filterPredicate = (data, filter: string) =>{
+        const accumulator = (currentTerm, key) => {
+          return key === 'status' ? currentTerm + data.status.naziv : currentTerm + data[key];
         };
+        const dataStr = Object.keys(data).reduce(accumulator,'').toLowerCase();
+        const transformedFilter = filter.trim().toLowerCase();
+        return dataStr.indexOf(transformedFilter) !== -1;
+      };
   
-        this.dataSource.sortingDataAccessor = (data, property) => {
-          switch(property) {
-            case 'status': return data.status.naziv.toLowerCase();
-  
-            default: return data[property];
-          }
-        };
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      }
-    ),
+      this.dataSource.sortingDataAccessor = (data, property) => {
+        switch(property) {
+          case 'status': return data.status.naziv.toLowerCase();
+          default: return data[property];
+        }
+      };
+      
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort; 
+    }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
       }
   }
-  public openDialog(flag: number, id?: number, brojIndeksa?: number, ime?: string, prezime?: string, 
-    departman?: Departman, status?: Status) {
+  public openDialog(flag: number, id?: number, brojIndeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
       const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, brojIndeksa, ime, prezime, departman, status}});
       dialogRef.componentInstance.flag = flag;
       if(flag === 1) {

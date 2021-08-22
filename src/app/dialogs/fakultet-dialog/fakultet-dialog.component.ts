@@ -22,18 +22,19 @@ export class FakultetDialogComponent implements OnInit {
   }
 
   public addFakultet(): void {
-    this.fakultetService.addFakultet(this.data).subscribe(() => {
+    this.fakultetService.addFakultet(this.data)
+    .subscribe(() => {
       this.snackBar.open('Uspesno dodat fakultet: '+ this.data.naziv, 'OK' , {
         duration: 2500
-      }),
+      });
+    }),
       (error: Error) =>
       {
         console.log(error.name + ' ' + error.message);
         this.snackBar.open('Doslo je do greske.', 'Zatvori' , {
           duration: 2500
-        })
-      }
-    })
+        });
+      };
   }
   public updateFakultet(): void {
     this.fakultetService.updateFakultet(this.data).subscribe(() => {
