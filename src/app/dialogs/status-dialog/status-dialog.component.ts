@@ -22,18 +22,19 @@ export class StatusDialogComponent implements OnInit {
   }
   
   public addStatus(): void {
-    this.statusService.addStatus(this.data).subscribe(() => {
+    this.statusService.addStatus(this.data)
+    .subscribe(() => {
       this.snackBar.open('Uspesno dodat status: '+ this.data.naziv, 'OK' , {
         duration: 2500
+        });
       }),
       (error: Error) =>
-      {
-        console.log(error.name + ' ' + error.message);
-        this.snackBar.open('Doslo je do greske.', 'Zatvori' , {
-          duration: 2500
-        })
-      }
-    })
+        {
+          console.log(error.name + ' ' + error.message);
+          this.snackBar.open('Doslo je do greske.', 'Zatvori' , {
+            duration: 2500
+        });
+    };
   }
   public updateStatus(): void {
     this.statusService.updateStatus(this.data).subscribe(() => {
