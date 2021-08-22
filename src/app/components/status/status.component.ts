@@ -37,19 +37,19 @@ export class StatusComponent implements OnInit, OnDestroy {
   public loadData() {
     this.subscription = this.statusService.getAllStatuse().subscribe(
       data => {
+        console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-
+      }),
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message);
       }
-    ),
-    (error: Error) => {
-      console.log(error.name + ' ' + error.message);
-    }
   }
 
-  public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string) : void {
-    const dialogRef = this.dialog.open(StatusDialogComponent, {data: {id,naziv,oznaka}});
+  //ovde je bio : void
+  public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string) {
+    const dialogRef = this.dialog.open(StatusDialogComponent, {data: {id, naziv, oznaka}});
 
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
@@ -59,10 +59,10 @@ export class StatusComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLocaleLowerCase();   
     this.dataSource.filter = filterValue;
-
   }
 }
