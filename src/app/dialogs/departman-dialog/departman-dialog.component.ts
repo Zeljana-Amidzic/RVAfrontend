@@ -44,7 +44,7 @@ export class DepartmanDialogComponent implements OnInit,OnDestroy {
     return a.id == b.id;
   }
 
-  public addDepartman(): void{
+  public add(): void{
     this.departmanService.addDepartman(this.data)
     .subscribe(() => {
       this.snackBar.open('Uspešno dodat departman: ' + this.data.naziv, 'OK', {
@@ -59,7 +59,7 @@ export class DepartmanDialogComponent implements OnInit,OnDestroy {
     };
   }
 
-  public updateDepartman(): void {
+  public update(): void {
     this.departmanService.updateDepartman(this.data).subscribe(() => {
       this.snackBar.open('Uspešno modifikovan departman: ' + this.data.naziv, 'OK', {
         duration: 2500
@@ -73,7 +73,7 @@ export class DepartmanDialogComponent implements OnInit,OnDestroy {
     }
   }
 
-  public deleteDepartman(): void {
+  public delete(): void {
     this.departmanService.deleteDepartman(this.data.id).subscribe(() => {
       this.snackBar.open('Uspešno obrisan departman: ' + this.data.naziv, 'OK', {
         duration: 2500

@@ -28,9 +28,9 @@
       </div>
   
       <div mat-dialog-actions>
-        <button mat-button *ngIf="flag == 1"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addDepartman()">Sačuvaj</button>
-        <button mat-button *ngIf="flag == 2"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateDepartman()">Sačuvaj</button>
-        <button mat-button *ngIf="flag == 3"  [mat-dialog-close]="1" (click)="deleteDepartman()">Obriši</button>
+        <button mat-button *ngIf="flag == 1"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="add()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 2"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="update()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 3"  [mat-dialog-close]="1" (click)="delete()">Obriši</button>
         <button mat-button (click)="cancel()" tabindex="-1">Poništi</button>
       </div>
     </form>

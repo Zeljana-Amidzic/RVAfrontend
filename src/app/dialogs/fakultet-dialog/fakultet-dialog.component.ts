@@ -21,7 +21,7 @@ export class FakultetDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public addFakultet(): void {
+  public add(): void {
     this.fakultetService.addFakultet(this.data)
     .subscribe(() => {
       this.snackBar.open('Uspesno dodat fakultet: '+ this.data.naziv, 'OK' , {
@@ -37,7 +37,7 @@ export class FakultetDialogComponent implements OnInit {
     };
   }
   
-  public updateFakultet(): void {
+  public update(): void {
     this.fakultetService.updateFakultet(this.data).subscribe(() => {
       this.snackBar.open('Uspesno izmenjen fakultet: '+ this.data.naziv, 'OK' , {
         duration: 2500
@@ -51,7 +51,7 @@ export class FakultetDialogComponent implements OnInit {
       }
     })
   }
-  public deleteFakultet(): void {
+  public delete(): void {
     this.fakultetService.deleteFakultet(this.data.id).subscribe(() => {
       this.snackBar.open('Uspesno obrisan fakultet: '+ this.data.naziv, 'OK' , {
         duration: 2500
