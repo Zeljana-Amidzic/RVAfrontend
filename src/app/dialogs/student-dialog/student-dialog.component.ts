@@ -24,19 +24,27 @@ export class StudentDialogComponent implements OnInit, OnDestroy {
     public statusService: StatusService,
     public studentService: StudentService) { }
 
-  ngOnDestroy(): void {
-    this.statusSubscription.unsubscribe();
-  }
-
   ngOnInit(): void {
     this.statusSubscription = this.statusService.getAllStatuse().subscribe(
+      statusi => {
+        this.statusi = statusi;
+      }
+    ),
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message);
+    }
+    /*this.statusSubscription = this.statusService.getAllStatuse().subscribe(
       data => {
         this.statusi = data;
       }
     ),
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
-      }
+      }*/
+  }
+
+  ngOnDestroy(): void {
+    this.statusSubscription.unsubscribe();
   }
 
   compareTo(a,b) {

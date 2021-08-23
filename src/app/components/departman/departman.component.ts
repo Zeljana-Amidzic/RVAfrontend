@@ -23,18 +23,18 @@ export class DepartmanComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private departmanService: DepartmanService,
-              private dialog: MatDialog) { }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  constructor(public departmanService: DepartmanService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  loadData() {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public loadData() {
     this.subscription = this.departmanService.getAllDepartmane()
     .subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
@@ -63,6 +63,7 @@ export class DepartmanComponent implements OnInit, OnDestroy {
       console.log(error.name + ' ' + error.message);
     }
   }
+
   public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string, fakultet?: Fakultet) {
     const dialogRef = this.dialog.open(DepartmanDialogComponent, 
       {data: {id, naziv, oznaka, fakultet}});
@@ -75,9 +76,11 @@ export class DepartmanComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   selectRow(row: any){
     this.selektovaniDepartman = row;
   }
+  
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLocaleLowerCase();   

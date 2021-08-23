@@ -1,20 +1,22 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Departman } from 'src/app/models/departman';
 import { DepartmanService } from 'src/app/services/departman.service';
 import { Fakultet } from 'src/app/models/fakultet';
 import { FakultetService } from 'src/app/services/fakultet.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-departman-dialog',
   templateUrl: './departman-dialog.component.html',
   styleUrls: ['./departman-dialog.component.css']
 })
-export class DepartmanDialogComponent implements OnInit {
+export class DepartmanDialogComponent implements OnInit,OnDestroy {
 
   public flag: number;
   fakulteti: Fakultet[];
+  fakultetSubscription: Subscription;
 
   constructor(public snackBar: MatSnackBar,
               public dialogRef: MatDialogRef<DepartmanDialogComponent>,
@@ -23,11 +25,19 @@ export class DepartmanDialogComponent implements OnInit {
               public fakultetService: FakultetService) { }
 
   ngOnInit(): void {
-    this.fakultetService.getFakultete().subscribe(
+    this.fakultetSubscription = this.fakultetService.getFakultete()
+    .subscribe(fakulteti => {
+      this.fakulteti = fakulteti;
+    })
+    /*this.fakultetService.getFakultete().subscribe(
       data => {
         this.fakulteti = data;
       }
-    );
+    );*/
+  }
+
+  ngOnDestroy(): void{
+    this.fakultetSubscription.unsubscribe();
   }
 
   compareTo(a,b){

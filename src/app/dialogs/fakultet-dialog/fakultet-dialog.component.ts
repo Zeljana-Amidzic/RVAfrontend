@@ -36,6 +36,7 @@ export class FakultetDialogComponent implements OnInit {
         });
     };
   }
+  
   public updateFakultet(): void {
     this.fakultetService.updateFakultet(this.data).subscribe(() => {
       this.snackBar.open('Uspesno izmenjen fakultet: '+ this.data.naziv, 'OK' , {

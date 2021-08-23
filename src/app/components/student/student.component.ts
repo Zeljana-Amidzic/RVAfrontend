@@ -27,21 +27,22 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private studentService: StudentService,
     private dialog: MatDialog) { }
 
+  ngOnInit(): void {
+    //this.loadData();
+  }
+
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+ 
   ngOnChanges(): void {
     if(this.selektovaniDepartman.id){
       this.loadData();
     }
   }
 
-  ngOnInit(): void {
-    //this.loadData();
-  } 
-
-  loadData() {
+  public loadData() {
     this.subscription = this.studentService.getStudentPoDepartmanu(this.selektovaniDepartman.id)
     .subscribe(data => {
       console.log(data);

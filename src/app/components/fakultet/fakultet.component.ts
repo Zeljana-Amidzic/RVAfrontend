@@ -22,14 +22,14 @@ export class FakultetComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(private fakultetService: FakultetService,
-    private dialog: MatDialog) { }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public loadData() {
@@ -39,13 +39,13 @@ export class FakultetComponent implements OnInit {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      }
-    ),
+    }),
     (error: Error) => {
       console.log(error.name + ' ' + error.message);
     }
   }
-  public openDialog(flag: number, id?: number, naziv?: string, sediste?: string) : void {
+
+  public openDialog(flag: number, id?: number, naziv?: string, sediste?: string) {
     const dialogRef = this.dialog.open(FakultetDialogComponent, {data: {id,naziv,sediste}});
   
     dialogRef.componentInstance.flag = flag;
