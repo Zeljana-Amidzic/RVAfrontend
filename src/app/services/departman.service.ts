@@ -7,12 +7,12 @@ import { Departman } from '../models/departman';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DepartmanService {
 
   constructor(private httpClient: HttpClient) { }
 
   public getAllDepartmane(): Observable<any>{
-
     return this.httpClient.get(`${Departman_URL}`);
   }
 

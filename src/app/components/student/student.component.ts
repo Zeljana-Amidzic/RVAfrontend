@@ -17,12 +17,17 @@ import { StudentDialogComponent } from 'src/app/dialogs/student-dialog/student-d
 })
 export class StudentComponent implements OnInit, OnChanges, OnDestroy {
   
-  displayedColumns = ['id','brojIndeksa','ime','prezime','departman','status','actions'];
+  displayedColumns = ['id', 'broj_indeksa', 'ime', 'prezime', 'departman', 'status', 'actions'];
   dataSource: MatTableDataSource<Student>;
   subscription: Subscription;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   @Input() selektovaniDepartman: Departman;
+  /*@Input() selektovaniDepartman: Departman;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;*/
 
   constructor(private studentService: StudentService,
     private dialog: MatDialog) { }
@@ -71,8 +76,8 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
         console.log(error.name + ' ' + error.message);
       }
   }
-  public openDialog(flag: number, id?: number, brojIndeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
-      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, brojIndeksa, ime, prezime, departman, status}});
+  public openDialog(flag: number, id?: number, broj_indeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
+      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, broj_indeksa, ime, prezime, departman, status}});
       dialogRef.componentInstance.flag = flag;
       if(flag === 1) {
         dialogRef.componentInstance.data.departman = this.selektovaniDepartman;

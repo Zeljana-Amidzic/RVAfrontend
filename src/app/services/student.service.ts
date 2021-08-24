@@ -7,22 +7,25 @@ import { Departman } from '../models/departman';
 
 @Injectable({
     providedIn: 'root'
-  })
-  export class StudentService {
+})
+export class StudentService {
   
-    constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-    public getStudentPoDepartmanu(departman: number): Observable<any> {
-      return this.httpClient.get(`${StudentDepartman_URL}/${departman}`);
-    }
-    public addStudent(student: Student): Observable<any> {
+  public getStudentPoDepartmanu(departman: number): Observable<any> {
+    return this.httpClient.get(`${StudentDepartman_URL}/${departman}`);
+  }
+
+  public addStudent(student: Student): Observable<any> {
       student.id = 0;
       return this.httpClient.post(`${Student_URL}`, student);
-    }
-    public updateStudent(student: Student): Observable<any> {
-      return this.httpClient.put(`${Student_URL}`, student);
-    }
-    public deleteStudent(id: number): Observable<any> {
-      return this.httpClient.delete(`${Student_URL}/${id}`);
-    }
   }
+
+  public updateStudent(student: Student): Observable<any> {
+      return this.httpClient.put(`${Student_URL}`, student);
+  }
+
+  public deleteStudent(id: number): Observable<any> {
+      return this.httpClient.delete(`${Student_URL}/${id}`);
+  }
+}

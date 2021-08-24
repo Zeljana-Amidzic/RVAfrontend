@@ -15,7 +15,7 @@ import { StatusDialogComponent } from 'src/app/dialogs/status-dialog/status-dial
 })
 export class StatusComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id','naziv','oznaka','actions'];
+  displayedColumns = ['id', 'naziv', 'oznaka', 'actions'];
   dataSource: MatTableDataSource<Status>;
   subscription: Subscription;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -23,20 +23,19 @@ export class StatusComponent implements OnInit, OnDestroy {
 
 
   constructor(private statusService: StatusService,
-              private dialog: MatDialog) { }
-
-  
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   public loadData() {
-    this.subscription = this.statusService.getAllStatuse().subscribe(
-      data => {
+    this.subscription = this.statusService.getAllStatuse()
+    .subscribe(data => {
         console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -52,8 +51,9 @@ export class StatusComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(StatusDialogComponent, {data: {id, naziv, oznaka}});
 
     dialogRef.componentInstance.flag = flag;
-    dialogRef.afterClosed().subscribe(res => {
-      if(res===1)
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      if(result===1)
       {
         this.loadData();
       }

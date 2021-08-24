@@ -6,22 +6,25 @@ import { Fakultet } from '../models/fakultet';
 
 @Injectable({
     providedIn: 'root'
-  })
-  export class FakultetService {
+})
+export class FakultetService {
   
-    constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
   
-    public getFakultete(): Observable<any> {
-      return this.httpClient.get(`${Fakultet_URL}`);
-    }
-    public addFakultet(fakultet: Fakultet): Observable<any> {
-      fakultet.id = 0;
-      return this.httpClient.post(`${Fakultet_URL}`, fakultet);
-    }
-    public updateFakultet(fakultet: Fakultet): Observable<any> {
-      return this.httpClient.put(`${Fakultet_URL}`, fakultet);
-    }
-    public deleteFakultet(id: number): Observable<any> {
-      return this.httpClient.delete(`${Fakultet_URL}/${id}`);
-    }
+  public getFakultete(): Observable<any> {
+    return this.httpClient.get(`${Fakultet_URL}`);
   }
+  
+  public addFakultet(fakultet: Fakultet): Observable<any> {
+    fakultet.id = 0;
+    return this.httpClient.post(`${Fakultet_URL}`, fakultet);
+  }
+
+  public updateFakultet(fakultet: Fakultet): Observable<any> {
+    return this.httpClient.put(`${Fakultet_URL}`, fakultet);
+  }
+
+  public deleteFakultet(id: number): Observable<any> {
+    return this.httpClient.delete(`${Fakultet_URL}/${id}`);
+  }
+}

@@ -15,7 +15,7 @@ import { FakultetDialogComponent } from 'src/app/dialogs/fakultet-dialog/fakulte
 })
 export class FakultetComponent implements OnInit {
 
-  displayedColumns = ['id','naziv','sediste','actions'];
+  displayedColumns = ['id', 'naziv', 'sediste', 'actions'];
   dataSource: MatTableDataSource<Fakultet>;
   subscription: Subscription;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -33,8 +33,8 @@ export class FakultetComponent implements OnInit {
   }
 
   public loadData() {
-    this.subscription = this.fakultetService.getFakultete().subscribe(
-      data => {
+    this.subscription = this.fakultetService.getFakultete()
+    .subscribe(data => {
         //console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -46,21 +46,21 @@ export class FakultetComponent implements OnInit {
   }
 
   public openDialog(flag: number, id?: number, naziv?: string, sediste?: string) {
-    const dialogRef = this.dialog.open(FakultetDialogComponent, {data: {id,naziv,sediste}});
+    const dialogRef = this.dialog.open(FakultetDialogComponent, {data: {id, naziv, sediste}});
   
     dialogRef.componentInstance.flag = flag;
-    dialogRef.afterClosed().subscribe(res => {
-      if(res===1)
+    dialogRef.afterClosed().subscribe(result => {
+      if(result===1)
       {
         this.loadData();
       }
     })
   }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLocaleLowerCase();   
     this.dataSource.filter = filterValue;
-
   }
 
 }

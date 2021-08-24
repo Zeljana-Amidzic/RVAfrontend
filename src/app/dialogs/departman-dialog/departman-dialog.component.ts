@@ -14,8 +14,8 @@ import { Subscription } from 'rxjs';
 })
 export class DepartmanDialogComponent implements OnInit,OnDestroy {
 
-  public flag: number;
   fakulteti: Fakultet[];
+  public flag: number;
   fakultetSubscription: Subscription;
 
   constructor(public snackBar: MatSnackBar,

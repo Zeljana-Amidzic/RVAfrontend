@@ -16,12 +16,14 @@ import { Fakultet } from 'src/app/models/fakultet';
 })
 export class DepartmanComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id','naziv','oznaka','fakultet','actions'];
+  displayedColumns = ['id', 'naziv', 'oznaka', 'fakultet', 'actions'];
   dataSource: MatTableDataSource<Departman>;
   subscription: Subscription;
   selektovaniDepartman: Departman;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  //@ViewChild(MatSort, {static: false}) sort: MatSort;
+  //@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(public departmanService: DepartmanService,
               public dialog: MatDialog) { }
@@ -69,8 +71,8 @@ export class DepartmanComponent implements OnInit, OnDestroy {
       {data: {id, naziv, oznaka, fakultet}});
       dialogRef.componentInstance.flag = flag; 
       
-      dialogRef.afterClosed().subscribe(res => {
-      if(res === 1)
+      dialogRef.afterClosed().subscribe(result => {
+      if(result === 1)
       {
         this.loadData();
       }

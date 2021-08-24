@@ -25,7 +25,7 @@ export class StatusDialogComponent implements OnInit {
     this.statusService.addStatus(this.data)
     .subscribe(() => {
       //this.snackBar.open('Uspesno dodat status: '+ this.data.naziv, 'OK' , {
-      this.snackBar.open('Uspesno dodat status: '+this.data.naziv, 'OK' , {
+      this.snackBar.open('Uspesno dodat status', 'OK' , {
         duration: 2500
         });
       }),
@@ -37,6 +37,7 @@ export class StatusDialogComponent implements OnInit {
         });
     };
   }
+
   public update(): void {
     this.statusService.updateStatus(this.data).subscribe(() => {
       this.snackBar.open('Uspesno izmenjen status: '+ this.data.naziv, 'OK' , {
@@ -51,6 +52,7 @@ export class StatusDialogComponent implements OnInit {
       }
     })
   }
+
   public delete(): void {
     this.statusService.deleteStatus(this.data.id).subscribe(() => {
       this.snackBar.open('Uspesno obrisan status: '+ this.data.naziv, 'OK' , {
@@ -65,6 +67,7 @@ export class StatusDialogComponent implements OnInit {
       }
     })
   }
+  
   public cancel(): void {
     this.dialogRef.close();
     this.snackBar.open('Odustali ste.', 'Zatvori', {

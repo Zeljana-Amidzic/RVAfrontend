@@ -51,6 +51,7 @@ export class FakultetDialogComponent implements OnInit {
       }
     })
   }
+
   public delete(): void {
     this.fakultetService.deleteFakultet(this.data.id).subscribe(() => {
       this.snackBar.open('Uspesno obrisan fakultet: '+ this.data.naziv, 'OK' , {
@@ -65,6 +66,7 @@ export class FakultetDialogComponent implements OnInit {
       }
     })
   }
+  
   public cancel(): void {
     this.dialogRef.close();
     this.snackBar.open('Odustali ste.', 'Zatvori', {

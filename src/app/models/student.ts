@@ -3,7 +3,7 @@ import { Status } from './status';
 
 export class Student {
     id: number;
-    brojIndeksa: string;
+    broj_indeksa: string;
     ime: string;
     prezime: string;
     departman: Departman;
