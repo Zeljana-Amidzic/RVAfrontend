@@ -76,8 +76,8 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
         console.log(error.name + ' ' + error.message);
       }
   }
-  public openDialog(flag: number, id?: number, brojIindeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
-      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, brojIindeksa, ime, prezime, departman, status}});
+  public openDialog(flag: number, id?: number, brojIndeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
+      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, brojIndeksa, ime, prezime, departman, status}});
       dialogRef.componentInstance.flag = flag;
       if(flag === 1) {
         dialogRef.componentInstance.data.departman = this.selektovaniDepartman;
