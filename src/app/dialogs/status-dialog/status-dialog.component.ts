@@ -25,7 +25,7 @@ export class StatusDialogComponent implements OnInit {
     this.statusService.addStatus(this.data)
     .subscribe(() => {
       //this.snackBar.open('Uspesno dodat status: '+ this.data.naziv, 'OK' , {
-      this.snackBar.open('Uspesno dodat status', 'OK' , {
+      this.snackBar.open('Uspesno dodat status: '+this.data.naziv, 'OK' , {
         duration: 2500
         });
       }),
