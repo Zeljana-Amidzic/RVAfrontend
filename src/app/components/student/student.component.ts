@@ -16,8 +16,8 @@ import { StudentDialogComponent } from 'src/app/dialogs/student-dialog/student-d
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit, OnChanges, OnDestroy {
-  
-  displayedColumns = ['id', 'brojIndeksa', 'ime', 'prezime', 'departman', 'status', 'actions'];
+  //id","ime","prezime","broj_indeksa","status","departman"
+  displayedColumns = ['id', 'ime', 'prezime', 'brojIndeksa', 'status', 'departman', 'actions'];
   dataSource: MatTableDataSource<Student>;
   subscription: Subscription;
 
@@ -76,8 +76,8 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
         console.log(error.name + ' ' + error.message);
       }
   }
-  public openDialog(flag: number, id?: number, brojIndeksa?: number, ime?: string, prezime?: string, departman?: Departman, status?: Status) {
-      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, brojIndeksa, ime, prezime, departman, status}});
+  public openDialog(flag: number, id?: number, ime?: string, prezime?: string, brojIndeksa?: number, status?: Status, departman?: Departman) {
+      const dialogRef = this.dialog.open(StudentDialogComponent,{data: {id, ime, prezime, brojIndeksa, status, departman}});
       dialogRef.componentInstance.flag = flag;
       if(flag === 1) {
         dialogRef.componentInstance.data.departman = this.selektovaniDepartman;
