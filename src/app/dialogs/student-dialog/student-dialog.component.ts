@@ -26,8 +26,8 @@ export class StudentDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.statusSubscription = this.statusService.getAllStatuse().subscribe(
-      statusi => {
-        this.statusi = statusi;
+      data => {
+        this.statusi = data;
       }
     ),
       (error: Error) => {
@@ -54,7 +54,7 @@ export class StudentDialogComponent implements OnInit, OnDestroy {
   public add(): void {
     this.studentService.addStudent(this.data)
     .subscribe(() => {
-      this.snackBar.open('Student uspešno dodat' , 'OK', {
+      this.snackBar.open('Student uspešno dodat: '+ this.data.id , 'OK', {
         duration: 2500
       })
     }),
