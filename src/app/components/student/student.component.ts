@@ -16,7 +16,7 @@ import { StudentDialogComponent } from 'src/app/dialogs/student-dialog/student-d
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit, OnChanges, OnDestroy {
-  //id","ime","prezime","broj_indeksa","status","departman"
+
   displayedColumns = ['id', 'ime', 'prezime', 'brojIndeksa', 'status', 'departman', 'actions'];
   dataSource: MatTableDataSource<Student>;
   subscription: Subscription;
@@ -32,10 +32,6 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private studentService: StudentService,
     private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    //this.loadData();
-  }
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -45,6 +41,10 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
     if(this.selektovaniDepartman.id){
       this.loadData();
     }
+  }
+
+  ngOnInit(): void {
+    //this.loadData();
   }
 
   public loadData() {
