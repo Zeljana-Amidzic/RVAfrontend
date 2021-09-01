@@ -25,9 +25,6 @@ export class StudentComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   @Input() selektovaniDepartman: Departman;
-  /*@Input() selektovaniDepartman: Departman;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;*/
 
   constructor(private studentService: StudentService,
     private dialog: MatDialog) { }
