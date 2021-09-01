@@ -1,5 +1,5 @@
 LINKOVI:
-1.Heroku app: https://rva-backend-zeljana-amidzic.herokuapp.com/
+1.Heroku app: https://backend-2-rva.herokuapp.com/
 2.Netlify: https://sleepy-kepler-378c54.netlify.app/
 
 # AngularStarterProject
